@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Image } from 'react-native';
 
 import Button from './src/components/Button/Button.js';
 
@@ -17,6 +17,16 @@ class App extends React.Component {
 		return (
 			<View style={styles.container}>
 				<Button>Submit</Button>
+				<Image
+					source={ require("./src/images/email.png")}
+				/>
+
+				<Image
+					source={{
+						uri: 'https://picsum.photos/200/300'
+					}}
+					style={{ width: 200, height: 300 }}
+				/>
 			</View>
 		)
 	}
