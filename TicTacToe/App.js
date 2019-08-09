@@ -60,7 +60,6 @@ export default class App extends React.Component {
 			winMessage: ''
 		});
 
-		// force component update
 		this.forceUpdate();
 	}
 
@@ -97,7 +96,7 @@ export default class App extends React.Component {
 
 		} else if ((itemArr[2] !== 'empty') && (itemArr[2] === itemArr[4]) && (itemArr[4] === itemArr[6])) {
 			this.setState({
-				winMessage: (itemArr[2] ? 'cross': 'circle').concat(' win')
+				winMessage: (itemArr[2] ? 'X' : 'O').concat(' wins!')
 			});
 
 		}
