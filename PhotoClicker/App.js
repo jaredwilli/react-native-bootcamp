@@ -1,19 +1,25 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
-}
+import Home from './screens/Home';
+import CameraScreen from './screens/CameraScreen';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+const MainNavigator = createStackNavigator({
+	Home: { screen: Home },
+	Camera: { screen: CameraScreen },
+}, {
+	defaultNavigationOptions: {
+		headerTintColor: '#fff',
+		headerStyle: {
+			backgroundColor: '#FF1756'
+		},
+		headerTitleStyle: {
+			color: '#fff'
+		}
+	}
 });
+
+const App = createAppContainer(MainNavigator);
+
+export default App;
