@@ -1,9 +1,9 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 58991,
-  "expoServerNgrokUrl": "https://ua-jkz.anonymous.whattimeisitnot.exp.direct",
-  "packagerNgrokUrl": "https://packager.ua-jkz.anonymous.whattimeisitnot.exp.direct",
-  "ngrokPid": 59010
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }

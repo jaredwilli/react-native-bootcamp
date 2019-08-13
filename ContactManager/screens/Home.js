@@ -22,9 +22,73 @@ export default class Home extends React.Component {
 		title: 'Contact App'
 	};
 
+	componentWillMount() {
+		const { navigation } = this.props;
+
+		navigation.addListener('willFocus', () => {
+			this.getContacts();
+		});
+	}
+
+	// Get all contacts
+	getContacts = async () => {
+		await AsyncStorage.getAllKeys()
+			.then(keys => {
+				console.log(keys);
+				return AsyncStorage.multiGet(keys)
+					.then(result => {
+						this.setState({
+							data: result.sort(function(a, b) {
+								if (JSON.parse(a[1]).firstName < JSON.parse(b[1]).firstName) return -1;
+								if (JSON.parse(a[1]).firstName > JSON.parse(b[1]).firstName) return 1;
+								return 0;
+							})
+						})
+					})
+					.catch(error => console.log(error));
+			})
+			.catch(error => console.log(error));
+	}
+
+	viewContact = item => {
+		this.props.navigation.navigate('View', {
+			key: item[0].toString()
+		});
+	}
+
   render() {
     return (
       <View style={styles.container}>
+				<FlatList
+					data={this.state.data}
+					renderItem={({ item }) => {
+						const contact = JSON.parse(item[1]);
+						return (
+							<TouchableOpacity
+								onPress={() => this.viewContact(item)}
+							>
+								<Card style={styles.listItem}>
+									<View style={styles.iconContainer}>
+										<Text style={styles.contactIcon}>
+											{contact.firstName[0].toUpperCase()}
+										</Text>
+									</View>
+
+									<View style={styles.infoContainer}>
+										<Text style={styles.infoText}>
+											{contact.firstName} {contact.lastName}
+										</Text>
+										<Text style={styles.infoText}>
+											{contact.phone}
+										</Text>
+									</View>
+								</Card>
+							</TouchableOpacity>
+						)
+					}}
+					keyExtractor={(item, index) => item[0].toString()}
+				/>
+
 				<TouchableOpacity
 					style={styles.floatButton}
 					onPress={() => {
