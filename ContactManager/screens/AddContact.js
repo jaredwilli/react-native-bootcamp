@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
 	  fontSize: 18
 	},
 	empty: {
-	  height: 200,
+	  height: 00,
 	  backgroundColor: "#FFF"
 	}
   });
